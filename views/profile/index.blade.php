@@ -1,0 +1,113 @@
+@extends('layouts.app')
+
+@section('title', trans('messages.profile.title'))
+
+@section('content')
+    <div class="container content-parent">
+        <h1 class="title-block">{{ trans('messages.profile.title') }}</h1>
+
+        <div class="content mb-4">
+            <h5>{{ $user->name }}</h5>
+            <ul>
+                <li>{{ trans('messages.profile.info.role', ['role' => $user->role->name]) }}</li>
+                <li>{{ trans('messages.profile.info.register', ['date' => format_date($user->created_at, true)]) }}</li>
+                <li>{{ trans('messages.profile.info.2fa', ['2fa' => trans_bool($user->hasTwoFactorAuth())]) }}</li>
+            </ul>
+
+            @if($user->hasTwoFactorAuth())
+                <form action="{{ route('profile.2fa.disable') }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger">{{ trans('messages.profile.2fa.disable') }}</button>
+                </form>
+            @else
+                <a class="btn btn-success" href="{{ route('profile.2fa.index') }}">{{ trans('messages.profile.2fa.enable') }}</a>
+            @endif
+        </div>
+
+        @if(! $user->hasVerifiedEmail())
+            @if (session('resent'))
+                <div class="alert alert-success mb-4" role="alert">
+                    {{ trans('auth.verify-sent') }}
+                </div>
+            @endif
+
+            <div class="alert alert-warning mb-4" role="alert">
+                <p>{{ trans('messages.profile.not-verified') }}</p>
+                <p>{{ trans('auth.verify-request') }}</p>
+
+                <form method="POST" action="{{ route('verification.resend') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">{{ trans('auth.verify-resend') }}</button>
+                </form>
+            </div>
+        @endif
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content mb-4">
+                    <h5>{{ trans('messages.profile.change-password') }}</h5>
+
+                    <form action="{{ route('profile.password') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="passwordConfirmPassInput">{{ trans('auth.current-password') }}</label>
+                            <input type="password" class="form-control @error('password_confirm_pass') is-invalid @enderror" id="passwordConfirmPassInput" name="password_confirm_pass" required>
+
+                            @error('password_confirm_pass')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordInput">{{ trans('auth.password') }}</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="passwordInput" name="password" required>
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPasswordInput">{{ trans('auth.confirm-password') }}</label>
+                            <input type="password" class="form-control" id="confirmPasswordInput" name="password_confirmation" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">{{ trans('messages.actions.update') }}</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="content mb-4">
+                    <h5>{{ trans('messages.profile.change-email') }}</h5>
+
+                    <form action="{{ route('profile.email') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="emailInput">{{ trans('auth.email') }}</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="emailInput" name="email" value="{{ old('email', $user->email) }}" required>
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailConfirmPassInput">{{ trans('auth.current-password') }}</label>
+                            <input type="password" class="form-control @error('email_confirm_pass') is-invalid @enderror" id="emailConfirmPassInput" name="email_confirm_pass" required>
+
+                            @error('email_confirm_pass')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">{{ trans('messages.actions.update') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
