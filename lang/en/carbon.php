@@ -6,5 +6,5 @@ return [
         'title' => 'Home title',
         'subtitle' => 'Home subtitle',
         'background' => 'Background',
-    ]
+    ],
 ];
