@@ -26,7 +26,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown{{ $element->id }}">
                                 @foreach($element->elements as $childElement)
-                                    <a class="dropdown-item" href="{{ $childElement->getLink() }}" @if($element->new_tab) target="_blank" rel="noopener" @endif>{{ $childElement->name }}</a>
+                                    <a class="dropdown-item" href="{{ $childElement->getLink() }}" @if($element->new_tab) target="_blank" rel="noopener noreferrer" @endif>{{ $childElement->name }}</a>
                                 @endforeach
                             </div>
                         </li>
