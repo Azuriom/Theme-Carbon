@@ -11,7 +11,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="code">2fa verification code</label>
+                    <label for="code">{{ trans('auth.2fa-code') }}</label>
 
                     <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" required>
 
@@ -20,7 +20,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">{{ trans('auth.login') }}</button>
             </form>
         </div>
     </div>
