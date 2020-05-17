@@ -37,7 +37,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <button type="button" class="btn btn-primary @if($post->isLiked()) active @endif" @guest disabled @endguest data-like-url="{{ route('posts.like', $post) }}">
                     @lang('messages.likes', ['count' => '<span class="likes-count">'.$post->likes->count().'</span>'])
-                    <span class="spinner-border spinner-border-sm load-spinner d-none" role="status"></span>
+                    <span class="d-none spinner-border spinner-border-sm like-spinner" role="status"></span>
                 </button>
 
                 <span>{{ trans('messages.posts.posted', ['date' => format_date($post->published_at), 'user' => $post->author->name]) }}</span>
@@ -47,7 +47,7 @@
         @foreach($post->comments as $comment)
             <div class="content mb-3">
                 <div class="media">
-                    <img class="d-flex mr-3 rounded" src="{{ game()->getAvatarUrl($comment->author, 64) }}" alt="{{ $comment->author->name }}" height="55">
+                    <img class="d-flex mr-3 rounded" src="{{ game()->getAvatarUrl($comment->author) }}" alt="{{ $comment->author->name }}" height="55">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="content-body">

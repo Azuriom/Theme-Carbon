@@ -1,9 +1,10 @@
 {
     "name": "Carbon",
     "version": "0.1.0",
-    "description": "A light and dark Carbon theme.",
-    "url" : "https://azuriom.com",
+    "description": "A dark and white theme",
+    "url" : "https://azuriom.com/market/resources/5",
     "authors": [
         "Azuriom"
-    ]
+    ],
+	"apiId": 5
 }
