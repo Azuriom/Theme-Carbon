@@ -9,9 +9,10 @@
                 <div class="col-md-8">
                     @if(config('theme.title'))
                         <h1>{{ config('theme.title') }}</h1>
-                    @endif
-                    @if(config('theme.subtitle'))
-                        <h3>{{ config('theme.subtitle') }}</h3>
+
+                        @if(config('theme.subtitle'))
+                            <h2>{{ config('theme.subtitle') }}</h2>
+                        @endif
                     @endif
                 </div>
             </div>
