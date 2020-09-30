@@ -1,6 +1,7 @@
 {
+    "id": "carbon",
     "name": "Carbon",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A dark and white theme",
     "url" : "https://azuriom.com/market/resources/5",
     "authors": [
