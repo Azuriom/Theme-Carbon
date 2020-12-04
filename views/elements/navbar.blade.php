@@ -56,6 +56,12 @@
                                 {{ trans('messages.nav.profile') }}
                             </a>
 
+                            @foreach(plugins()->getUserNavItems() ?? [] as $navId => $navItem)
+                                <a class="dropdown-item" href="{{ route($navItem['route']) }}">
+                                    {{ trans($navItem['name']) }}
+                                </a>
+                            @endforeach
+
                             @if(Auth::user()->hasAdminAccess())
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     {{ trans('messages.nav.admin') }}
