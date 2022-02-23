@@ -5,7 +5,6 @@ body {
 
 body {
     background: #ebebeb;
-    font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -19,25 +18,16 @@ footer {
     background: #282828;
 }
 
-.title-block {
+h1:not(.title-no-bg),
+.h1:not(.title-no-bg) {
     color: #fff;
     background: #282828;
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-}
-
-h1.title-block {
     font-size: 2rem;
 }
 
-.title-block,
-.content,
-.content-shadow {
-    box-shadow: 0 0.3rem 0.75rem rgba(0, 0, 0, 0.15);
-}
-
-.content-parent,
 .content {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
@@ -47,9 +37,17 @@ h1.title-block {
     margin: 0;
 }
 
-.content {
+.card {
+    box-shadow: 0 0.3rem 0.75rem rgba(0, 0, 0, 0.15);
     background: #fff;
+}
+
+.card-body {
     padding: 25px;
+}
+
+.list-group-item {
+    padding: 1rem 1.5rem;
 }
 
 .navbar {
@@ -126,4 +124,10 @@ h1.title-block {
 .discord-widget {
     border: none;
     width: 100%;
+}
+
+.social-link {
+    display: inline-block;
+    padding: .75rem;
+    border-radius: 1rem;
 }

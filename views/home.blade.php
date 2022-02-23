@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('title', trans('messages.home'))
 
-@section('content')
+@section('app')
     <div class="home-background mb-4 p-4" style="background: url('{{ setting('background') ? image_url(setting('background')) : 'https://via.placeholder.com/2000x500' }}') no-repeat center; background-size: cover">
         <div class="container h-100">
             <div class="row justify-content-center align-items-center text-center text-white h-100">
                 <div class="col-md-8">
                     @if(config('theme.title'))
-                        <h1>{{ config('theme.title') }}</h1>
+                        <h1 class="title-no-bg">{{ config('theme.title') }}</h1>
 
                         @if(config('theme.subtitle'))
                             <h2>{{ config('theme.subtitle') }}</h2>
@@ -20,6 +20,16 @@
     </div>
 
     <div class="container">
+        @include('elements.session-alerts')
+
+        @if($message)
+            <div class="card mb-4">
+                <div class="card-body">
+                    {{ $message }}
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-8">
                 @foreach($posts as $post)
@@ -32,7 +42,7 @@
                             <h3><a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a></h3>
                             @if($post->image === null)
                                 <p>{{ Str::limit(strip_tags($post->content), 250, '...') }}
-                                    <a href="{{ route('posts.show', $post->slug) }}">{{ trans('messages.posts.read') }}</a>
+                                    <br><a href="{{ route('posts.show', $post->slug) }}">{{ trans('messages.posts.read') }}</a>
                                 </p>
                             @endif
 
@@ -60,4 +70,3 @@
 @push('scripts')
     <script src="https://platform.twitter.com/widgets.js" async></script>
 @endpush
-
