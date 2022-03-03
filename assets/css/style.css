@@ -9,6 +9,15 @@ body {
     flex-direction: column;
 }
 
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 #app {
     flex: 1 0 auto;
 }

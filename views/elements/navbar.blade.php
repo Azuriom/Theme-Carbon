@@ -8,7 +8,7 @@
             @endif
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="{{ trans('messages.nav.toggle') }}">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="{{ trans('messages.nav.toggle') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -40,23 +40,28 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <div class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    @if(Route::has('register'))
-                        <a class="btn btn-outline-light mx-1 my-2" href="{{ route('register') }}">
-                            {{ trans('auth.register') }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            {{ trans('auth.login') }}
                         </a>
+                    </li>
+
+                    @if(Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">
+                                {{ trans('auth.register') }}
+                            </a>
+                        </li>
                     @endif
-                    <a class="btn btn-secondary mx-1 my-2" href="{{ route('login') }}">
-                        {{ trans('auth.login') }}
-                    </a>
                 @else
                     @include('elements.notifications')
 
                     <li class="nav-item dropdown">
                         <a id="userDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -66,7 +71,7 @@
 
                             @foreach(plugins()->getUserNavItems() ?? [] as $navId => $navItem)
                                 <a class="dropdown-item" href="{{ route($navItem['route']) }}">
-                                    {{ trans($navItem['name']) }}
+                                    {{ $navItem['name'] }}
                                 </a>
                             @endforeach
 
@@ -86,7 +91,7 @@
                         </div>
                     </li>
                 @endguest
-            </div>
+            </ul>
         </div>
     </div>
 </nav>
