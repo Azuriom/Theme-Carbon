@@ -14,9 +14,9 @@
     <meta property="og:image" content="{{ favicon() }}">
     <meta property="og:description" content="@yield('description', setting('description', ''))">
     <meta property="og:site_name" content="{{ site_name() }}">
-@stack('meta')
+    @stack('meta')
 
-<!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') | {{ site_name() }}</title>
@@ -30,10 +30,10 @@
     <script src="{{ asset('js/script.js') }}" defer></script>
 
     <!-- Page level scripts -->
-@stack('scripts')
+    @stack('scripts')
 
-<!-- Fonts -->
-    <link href="{{ asset('vendor/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -57,7 +57,7 @@
 
             @foreach(social_links() as $link)
                 <a href="{{ $link->value }}" title="{{ $link->title }}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" class="social-link mx-1" style="background: {{ $link->color }}">
-                    <i class="{{ $link->icon }} fa-fw fa-lg text-white"></i>
+                    <i class="{{ $link->icon }} text-white fs-4 mx-1"></i>
                 </a>
             @endforeach
         </div>
