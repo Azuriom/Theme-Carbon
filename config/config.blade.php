@@ -11,11 +11,13 @@
                 <div class="row g-3">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="discordInput">{{ trans('theme::carbon.config.discord') }}</label>
-                        <input type="text" class="form-control @error('discord-id') is-invalid @enderror" id="discordInput" name="discord-id" value="{{ old('discord-id', config('theme.discord-id')) }}">
+                        <input type="text" class="form-control @error('discord-id') is-invalid @enderror" id="discordInput" name="discord-id" value="{{ old('discord-id', config('theme.discord-id')) }}" aria-describedby="discordLabel">
 
                         @error('discord-id')
                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
+
+                        <small id="discordLabel" class="form-text">{{ trans('theme::carbon.config.discord_info') }}</small>
                     </div>
 
                     <div class="mb-3 col-md-6">
