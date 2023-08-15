@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark text-uppercase">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container">
-        <a class="navbar-brand me-4" href="{{ route('home') }}">
+        <a class="navbar-brand fs-3 me-4" href="{{ route('home') }}">
             @if(setting('logo'))
                 <img src="{{ image_url(setting('logo')) }}" alt="Logo">
             @else

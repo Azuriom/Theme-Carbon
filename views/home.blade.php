@@ -80,28 +80,46 @@
         <div class="row">
             <div class="col-md-8">
                 @foreach($posts as $post)
-                    <div class="post-preview mb-3">
-                        @if($post->image !== null)
-                            <img src="{{ $post->imageUrl() }}" class="post-img img-fluid" alt="{{ $post->title }}">
-                        @endif
+                    <div class="card mb-4">
+                        @if($post->hasImage())
+                            <a href="{{ route('posts.show', $post->slug) }}">
+                                <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="card-img-top">
 
-                        <div class="post-body">
-                            <h3><a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a></h3>
-                            @if($post->image === null)
-                                <p>{{ Str::limit(strip_tags($post->content), 250, '...') }}
-                                    <br><a href="{{ route('posts.show', $post->slug) }}">{{ trans('messages.posts.read') }}</a>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ $post->title }}</h3>
+                                    <h4 class="card-subtitle mb-3">
+                                        {{ format_date($post->published_at) }}
+                                    </h4>
+
+                                    <a class="btn btn-primary" href="{{ route('posts.show', $post->slug) }}">
+                                        {{ trans('messages.posts.read') }} <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        @else
+                            <div class="card-body">
+                                <h3 class="card-title">{{ $post->title }}</h3>
+                                <h4 class="card-subtitle">
+                                    {{ format_date($post->published_at) }}
+                                </h4>
+
+                                <hr>
+
+                                <p class="card-text">
+                                    {{ Str::limit(strip_tags($post->content), 400) }}
                                 </p>
-                            @endif
-
-                            {{ trans('messages.posts.posted', ['date' => format_date($post->published_at), 'user' => $post->author->name]) }}
-                        </div>
+                                <a class="btn btn-primary" href="{{ route('posts.show', $post->slug) }}">
+                                    {{ trans('messages.posts.read') }} <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>
 
             <div class="col-md-4">
                 @if(config('theme.discord-id'))
-                    <iframe src="https://discordapp.com/widget?id={{ config('theme.discord-id') }}&theme=dark" title="Discord" height="500" class="discord-widget shadow mb-3" allowtransparency="true"></iframe>
+                    <iframe src="https://discordapp.com/widget?id={{ config('theme.discord-id') }}&theme=dark" title="Discord" height="500" class="w-100 border-0 shadow mb-3" allowtransparency="true"></iframe>
                 @endif
 
                 @if(config('theme.twitter'))

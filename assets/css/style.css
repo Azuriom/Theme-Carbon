@@ -1,3 +1,11 @@
+:root {
+    --bs-border-radius: 0;
+    --bs-border-radius-sm: 0;
+    --bs-border-radius-lg: 0;
+    --bs-dark: #282828;
+    --bs-dark-rgb: 40, 40, 40;
+}
+
 html,
 body {
     height: 100%;
@@ -13,18 +21,8 @@ a {
     text-decoration: none;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 #app {
     flex: 1 0 auto;
-}
-
-footer {
-    margin-top: auto;
-    background: #282828;
 }
 
 h1:not(.title-no-bg),
@@ -37,45 +35,22 @@ h1:not(.title-no-bg),
     font-size: 2rem;
 }
 
-.markdown-body h1:not(.title-no-bg),
-.markdown-body .h1:not(.title-no-bg) {
-    color: inherit;
-    background: inherit;
-    padding: inherit;
-    text-transform: inherit;
-    font-size: 1.75rem;
-}
-
 .content {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
 }
 
-.content-parent .content {
-    margin: 0;
-}
-
 .card {
     box-shadow: 0 0.3rem 0.75rem rgba(0, 0, 0, 0.15);
-    background: #fff;
 }
 
 .card-body {
-    padding: 25px;
-}
-
-.list-group-item {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
 }
 
 .navbar {
-    background: #282828;
     font-weight: 500;
-    font-size: 1.0rem;
-}
-
-.navbar-brand {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 .navbar-brand img {
@@ -85,6 +60,7 @@ h1:not(.title-no-bg),
 
 .navbar .navbar-nav .nav-link {
     padding: 0.5rem 0.75rem;;
+    text-transform: uppercase;
 }
 
 .home-background {
@@ -92,60 +68,4 @@ h1:not(.title-no-bg),
     overflow: hidden;
     background-size: cover;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
-}
-
-.home-background img {
-    max-height: 400px;
-}
-
-.home-background .btn {
-    border-radius: 0;
-    padding: 10px 35px;
-}
-
-.post-preview {
-    position: relative;
-}
-
-.post-preview .post-img {
-    border-radius: 5px;
-}
-
-.post-preview .post-body {
-    padding: 10px;
-    color: #fff;
-    background: #232323;
-    border-radius: 5px;
-}
-
-.post-preview .post-img ~ .post-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.post-preview .card-title {
-    color: inherit;
-}
-
-.post-preview {
-    border-radius: 0;
-}
-
-.post-preview .card-img-top {
-    border-radius: 0;
-}
-
-.discord-widget {
-    border: none;
-    width: 100%;
-}
-
-.social-link {
-    display: inline-block;
-    padding: .6rem;
-    border-radius: 1rem;
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description', setting('description', ''))">
-    <meta name="theme-color" content="#3490DC">
+    <meta name="theme-color" content="#282828">
     <meta name="author" content="Azuriom">
 
     <meta property="og:title" content="@yield('title')">
@@ -37,8 +37,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/base.css') }}" rel="stylesheet">
     <link href="{{ theme_asset('css/style.css') }}" rel="stylesheet">
     @stack('styles')
+    @include('elements.theme-color', ['color' => '#282828'])
 </head>
 
 <body>
@@ -50,13 +52,13 @@
     @yield('app')
 </div>
 
-<footer class="text-white py-4 text-center">
+<footer class="text-bg-dark py-5 text-center mt-auto">
     <div class="copyright">
         <div class="container">
             <p>{{ setting('copyright') }} | @lang('messages.copyright')</p>
 
             @foreach(social_links() as $link)
-                <a href="{{ $link->value }}" title="{{ $link->title }}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" class="social-link mx-1" style="background: {{ $link->color }}">
+                <a href="{{ $link->value }}" title="{{ $link->title }}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" class="rounded-4 d-inline-block p-2 mx-1" style="background: {{ $link->color }}">
                     <i class="{{ $link->icon }} text-white fs-4 mx-1"></i>
                 </a>
             @endforeach
